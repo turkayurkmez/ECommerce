@@ -1,15 +1,9 @@
 ﻿using ECommerce.Common.Results;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ECommerce.Common.Models
 {
-    public  class ApiResponse<T>
+    public class ApiResponse<T>
     {
         //nullable T Data:
         public T? Data { get; set; }

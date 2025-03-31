@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ECommerce.Common.Exceptions
+﻿namespace ECommerce.Common.Exceptions
 {
     public class ApplicationException : Exception
-    {      
+    {
         public ApplicationException(string message) : base(message)
         {
         }
@@ -31,10 +25,10 @@ namespace ECommerce.Common.Exceptions
             Errors = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(IDictionary<string, string[]> errors):this()
+        public ValidationException(IDictionary<string, string[]> errors) : this()
         {
             Errors = errors;
         }
-        
+
     }
 }

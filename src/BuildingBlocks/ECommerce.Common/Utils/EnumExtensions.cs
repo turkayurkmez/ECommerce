@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Common.Utils
 {
@@ -22,14 +17,14 @@ namespace ECommerce.Common.Utils
             return attribute == null ? value.ToString() : attribute.Description;
         }
 
-        public static T? ToEnum<T>(this string value) where T : struct,Enum
+        public static T? ToEnum<T>(this string value) where T : struct, Enum
         {
             if (string.IsNullOrEmpty(value))
             {
                 return null;
             }
 
-            if (Enum.TryParse<T>(value,true,out var result))
+            if (Enum.TryParse<T>(value, true, out var result))
             {
                 return result;
 
@@ -38,7 +33,7 @@ namespace ECommerce.Common.Utils
             return null;
         }
 
-        public static List<T> ToList<T>() where T: Enum
+        public static List<T> ToList<T>() where T : Enum
         {
             return Enum.GetValues(typeof(T)).Cast<T>().ToList();
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ECommerce.Common.Extensions
+﻿namespace ECommerce.Common.Extensions
 {
     public static class DateTimeExtensions
     {
@@ -73,7 +67,7 @@ namespace ECommerce.Common.Extensions
 
         public static string ToFriendlyDateString(this DateTime date)
         {
-          var now = DateTime.Now;
+            var now = DateTime.Now;
             var diff = now - date;
             if (diff.TotalMinutes < 1)
             {

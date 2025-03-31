@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ECommerce.Common.Utils
 {
@@ -21,7 +16,7 @@ namespace ECommerce.Common.Utils
         };
         public static string Serialize<T>(T obj)
         {
-            return JsonSerializer.Serialize(obj,Options);
+            return JsonSerializer.Serialize(obj, Options);
         }
         public static T? Deserialize<T>(string json)
         {

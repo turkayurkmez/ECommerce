@@ -1,4 +1,6 @@
-﻿namespace ECommerce.Common.Domain
+﻿using MediatR;
+
+namespace ECommerce.Common.Domain
 {
     public abstract class Entity<TId> where TId : IEquatable<TId>
     {
@@ -6,6 +8,11 @@
 
         public DateTime CreatedDate { get; protected set; }
         public DateTime LastModifiedDate { get; protected set; }
+
+        //Domain Events koleksiyonu:
+        private List<INotification> _domainEvents { get; } = new();
+
+        public IReadOnlyCollection<INotification> DomainEvents => _domainEvents.AsReadOnly();
 
 
         protected Entity()
@@ -77,6 +84,21 @@
         public override int GetHashCode()
         {
             return Id.GetHashCode() * 41;
+        }
+
+        public void AddDomainEvent(INotification eventItem)
+        {
+            _domainEvents.Add(eventItem);
+        }
+
+        public void RemoveDomainEvent(INotification eventItem)
+        {
+            _domainEvents.Remove(eventItem);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
         }
     }
 }

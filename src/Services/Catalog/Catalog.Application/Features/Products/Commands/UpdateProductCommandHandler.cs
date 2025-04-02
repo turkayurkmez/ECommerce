@@ -2,19 +2,19 @@
 using Catalog.Domain.Repositories;
 using ECommerce.Common.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Catalog.Application.Features.Products
+namespace Catalog.Application.Features.Products.Commands
 {
     public record UpdateProductCommand(UpdateProductDto ProductDto) : IRequest<Result>;
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Result>
     {
 
         private readonly IProductRepository _productRepository;
+
+        public UpdateProductCommandHandler(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
         public async Task<Result> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var dto = request.ProductDto;
@@ -24,7 +24,7 @@ namespace Catalog.Application.Features.Products
                 return Result.Failure($"Ürün bulunamadı");
             }
 
-            product.UpdateBasicInfo(dto.Name, dto.Description,dto.SKU);
+            product.UpdateBasicInfo(dto.Name, dto.Description, dto.SKU);
             product.ChangePrice(dto.Price);
             product.ChangeStock(dto.StockQuantity);
             if (product.CategoryId != dto.CategoryId)

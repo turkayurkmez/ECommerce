@@ -11,7 +11,11 @@ namespace Catalog.Domain.Repositories
     public interface IProductRepository : IRepository<Product, int>
     {
         Task<List<Product>> GetProductsByCategoryAsync(int categoryId, CancellationToken cancellationToken = default);
-        Task<List<Product>> GetProductsByBeandAsync(int brandId, CancellationToken cancellationToken = default);
+
+        //sayfalama işlemi için:
+        Task<List<Product>> GetProductsByCategoryAsync(int categoryId, int skip, int take, CancellationToken cancellationToken = default);
+        Task<List<Product>> GetProductsByBrandAsync(int brandId, CancellationToken cancellationToken = default);
+        Task<List<Product>> GetProductsByBrandAsync(int brandId, int skip, int take, CancellationToken cancellationToken = default);
 
 
 

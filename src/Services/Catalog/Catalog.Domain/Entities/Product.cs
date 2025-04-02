@@ -267,6 +267,7 @@ namespace Catalog.Domain.Entities
 
         public void Delete()
         {
+            Status = ProductStatus.InActive;
             AddDomainEvent(new ProductDeletedDomainEvent(Id));
         }
 

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Application.Features.Products
+namespace Catalog.Application.Features.Products.Commands
 {
 
     public record CreateProductCommand(CreateProductDto ProductDto) : IRequest<Result<int>>;

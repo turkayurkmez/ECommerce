@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Application.Features.Products
+namespace Catalog.Application.Features.Products.Commands
 {
     public record DeleteProductCommand(int Id) : IRequest<Result>;
     public class DeleteProductComanndHandler : IRequestHandler<DeleteProductCommand, Result>

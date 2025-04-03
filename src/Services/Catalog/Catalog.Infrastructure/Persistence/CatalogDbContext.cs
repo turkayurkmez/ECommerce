@@ -1,13 +1,7 @@
 ﻿using ECommerce.Catalog.Domain.Entities;
-using ECommerce.Catalog.Infrastructure.EntityConfigurations;
 using ECommerce.Common.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.Persistence
 {
@@ -22,7 +16,7 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
 
         public CatalogDbContext(DbContextOptions<CatalogDbContext> options) : base(options)
         {
-            
+
         }
 
         //Products:
@@ -33,7 +27,7 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDbContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
@@ -55,7 +49,7 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
             {
                 foreach (var domainEvent in domainEvents)
                 {
-                    await _mediator.Publish(domainEvent,cancellationToken);
+                    await _mediator.Publish(domainEvent, cancellationToken);
                 }
             }
             return result;

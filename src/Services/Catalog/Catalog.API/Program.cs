@@ -1,7 +1,7 @@
-﻿using ECommerce.Catalog.Infrastructure.Extensions;
-using ECommerce.Catalog.Application.Extensions;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Text.Json;
+﻿using ECommerce.Catalog.Application.Extensions;
+using ECommerce.Catalog.Infrastructure.Extensions;
+using ECommerce.Catalog.Infrastructure.Persistence;
+using ECommerce.Common.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,29 +11,28 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 
+//eğer geliştirme ortamındaysa
+
 
 
 var app = builder.Build();
 
-app.UseExceptionHandler(errorApp =>
+//eğer geliştirme ortamındaysa:
+if (app.Environment.IsDevelopment())
 {
-    errorApp.Run(async context =>
+    using (var scope = app.Services.CreateScope())
     {
-        context.Response.ContentType = "application/json";
-
-        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-        var exception = exceptionHandlerPathFeature?.Error;
-
-        var response = new
+       var initializer = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+        if (!initializer.Database.EnsureCreated())
         {
-            StatusCode = 500,
-            Message = exception?.Message ?? "Bir hata oluştu",
-            Path = exceptionHandlerPathFeature?.Path
-        };
+            await CatalogDbInitializer.MigrateAsync(app.Services, app.Logger);
+        }
+      
+       // await initializer.SeedAsync();
+    }
 
-        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
-    });
-});
+}
+app.UseExceptionHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

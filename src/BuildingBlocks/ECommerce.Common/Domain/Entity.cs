@@ -6,7 +6,7 @@ namespace ECommerce.Common.Domain
     {
         public TId Id { get; set; }
 
-        public DateTime CreatedDate { get; protected set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; protected set; }
 
         //Domain Events koleksiyonu:

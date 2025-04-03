@@ -7,7 +7,7 @@
         public string ImageUrl { get; init; } = string.Empty;
         public int Id { get; init; }
         public bool IsMain { get; init; }
-        public int SortOrder { get; init ; }
+        public int SortOrder { get; init; }
     }
 
 

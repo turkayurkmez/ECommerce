@@ -4,11 +4,6 @@ using ECommerce.Common.Models;
 using ECommerce.Common.Results;
 using MapsterMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Features.Products.Queries
 {
@@ -28,7 +23,7 @@ namespace ECommerce.Catalog.Application.Features.Products.Queries
         {
             var skip = (request.Pagination.PageNumber - 1) * request.Pagination.PageSize;
             var take = request.Pagination.PageSize;
-            var products = await _productRepository.GetAllAsync(skip,take,cancellationToken);
+            var products = await _productRepository.GetAllAsync(skip, take, cancellationToken);
 
             if (products == null || !products.Any())
             {

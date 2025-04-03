@@ -2,11 +2,6 @@
 using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Catalog.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.Repositories
 {
@@ -24,5 +19,5 @@ namespace ECommerce.Catalog.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
     }
-   
+
 }

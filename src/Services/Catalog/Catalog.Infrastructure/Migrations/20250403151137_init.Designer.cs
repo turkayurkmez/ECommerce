@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Catalog.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20250403105806_init")]
+    [Migration("20250403151137_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -57,7 +57,7 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasDefaultValue("");
 
-                    b.Property<DateTime>("LastModifiedDate")
+                    b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Logo")
@@ -79,11 +79,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 467, DateTimeKind.Utc).AddTicks(1472),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Apple Inc.",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Logo = "/images/brands/apple.png",
                             Name = "Apple"
                         },
@@ -91,11 +90,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 467, DateTimeKind.Utc).AddTicks(2814),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Samsung Electronics Co., Ltd.",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Logo = "/images/brands/samsung.png",
                             Name = "Samsung"
                         },
@@ -103,11 +101,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 467, DateTimeKind.Utc).AddTicks(2818),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Hewlett-Packard Company",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Logo = "/images/brands/hp.png",
                             Name = "HP"
                         },
@@ -115,11 +112,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 467, DateTimeKind.Utc).AddTicks(2819),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Lenovo Group Limited",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Logo = "/images/brands/lenovo.png",
                             Name = "Lenovo"
                         },
@@ -127,11 +123,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 467, DateTimeKind.Utc).AddTicks(2842),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Dell Technologies Inc.",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Logo = "/images/brands/dell.png",
                             Name = "Dell"
                         });
@@ -169,7 +164,7 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasDefaultValue("");
 
-                    b.Property<DateTime>("LastModifiedDate")
+                    b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Level")
@@ -194,11 +189,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 473, DateTimeKind.Utc).AddTicks(3315),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Elektronik ürünler",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Level = 1,
                             Name = "Elektronik"
                         },
@@ -206,11 +200,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 473, DateTimeKind.Utc).AddTicks(4759),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Bilgisayar ve aksesuarlar",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Level = 2,
                             Name = "Bilgisayar",
                             ParentCategoryId = 1
@@ -219,11 +212,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 473, DateTimeKind.Utc).AddTicks(4763),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Dizüstü bilgisayarlar",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Level = 3,
                             Name = "Laptop",
                             ParentCategoryId = 2
@@ -232,11 +224,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 473, DateTimeKind.Utc).AddTicks(4765),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Masaüstü bilgisayarlar",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Level = 3,
                             Name = "Masaüstü",
                             ParentCategoryId = 2
@@ -245,11 +236,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 473, DateTimeKind.Utc).AddTicks(4766),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Cep telefonları",
                             IsActive = true,
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Level = 2,
                             Name = "Telefon",
                             ParentCategoryId = 1
@@ -264,16 +254,10 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BrandId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId1")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -297,7 +281,7 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasDefaultValue("");
 
-                    b.Property<DateTime>("LastModifiedDate")
+                    b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -330,11 +314,7 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("BrandId1");
-
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("CategoryId1");
 
                     b.ToTable("Products");
 
@@ -345,10 +325,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(3924),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Apple Iphone 12",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Iphone 12",
                             Price = 10000m,
                             ProductAttributes = "[]",
@@ -362,10 +341,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(8986),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Apple Iphone 11",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Iphone 11",
                             Price = 8000m,
                             ProductAttributes = "[]",
@@ -379,10 +357,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 2,
                             CategoryId = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(9003),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Samsung Galaxy S21",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Samsung S21",
                             Price = 9000m,
                             ProductAttributes = "[]",
@@ -396,10 +373,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 2,
                             CategoryId = 5,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(9007),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Samsung Galaxy S20",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Samsung S20",
                             Price = 7000m,
                             ProductAttributes = "[]",
@@ -413,10 +389,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 3,
                             CategoryId = 3,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(9009),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "HP Pavilion Laptop",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "HP Pavilion",
                             Price = 6000m,
                             ProductAttributes = "[]",
@@ -430,10 +405,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 4,
                             CategoryId = 3,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(9012),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Lenovo Thinkpad Laptop",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Lenovo Thinkpad",
                             Price = 7000m,
                             ProductAttributes = "[]",
@@ -447,10 +421,9 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                             BrandId = 5,
                             CategoryId = 3,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2025, 4, 3, 10, 58, 5, 491, DateTimeKind.Utc).AddTicks(9016),
+                            CreatedDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Dell XPS Laptop",
                             LastModifiedBy = "",
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Dell XPS",
                             Price = 8000m,
                             ProductAttributes = "[]",
@@ -508,24 +481,14 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
             modelBuilder.Entity("ECommerce.Catalog.Domain.Entities.Product", b =>
                 {
                     b.HasOne("ECommerce.Catalog.Domain.Entities.Brand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Catalog.Domain.Entities.Brand", null)
                         .WithMany("Products")
-                        .HasForeignKey("BrandId1");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ECommerce.Catalog.Domain.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Catalog.Domain.Entities.Category", null)
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId1");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Brand");
 
@@ -537,8 +500,7 @@ namespace ECommerce.Catalog.Infrastructure.Migrations
                     b.HasOne("ECommerce.Catalog.Domain.Entities.Product", "Product")
                         .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Product");
                 });

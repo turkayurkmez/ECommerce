@@ -16,7 +16,7 @@ namespace ECommerce.Catalog.Domain.Entities
         //Navigation properties
         public Category? ParentCategory { get; private set; }
         //Child Categories
-       public ICollection<Category> SubCategories { get; private set; }  = new List<Category>();
+        public ICollection<Category> SubCategories { get; private set; } = new List<Category>();
         //Products Navigation Property:
         public ICollection<Product> Products { get; private set; } = new List<Product>();
 
@@ -24,7 +24,7 @@ namespace ECommerce.Catalog.Domain.Entities
         {
         }
 
-        public Category(string name, string description, int? parentCategoryId, int level=1)
+        public Category(string name, string description, int? parentCategoryId, int level = 1)
         {
             //check name:
             if (string.IsNullOrWhiteSpace(name))
@@ -32,9 +32,9 @@ namespace ECommerce.Catalog.Domain.Entities
                 throw new ArgumentNullException(nameof(name), "Kategori adı boş olamaz:");
             }
             //check description:
-        
+
             //check level:
-        
+
             Name = name;
             Description = description;
             ParentCategoryId = parentCategoryId;
@@ -92,5 +92,5 @@ namespace ECommerce.Catalog.Domain.Entities
 
 
 
-        }
+    }
 }

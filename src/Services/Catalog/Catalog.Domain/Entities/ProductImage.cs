@@ -1,15 +1,10 @@
 ﻿using ECommerce.Common.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Domain.Entities
 {
     public class ProductImage : Entity<int>
     {
-        public int ProductId { get;private set; }
+        public int ProductId { get; private set; }
         public string ImageUrl { get; private set; }
 
         //IsMain

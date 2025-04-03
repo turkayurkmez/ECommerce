@@ -1,11 +1,6 @@
 ﻿using ECommerce.Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
 {
@@ -14,6 +9,9 @@ namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             // Name is required and has a max length of 100
+
+
+
             builder.Property(c => c.Name)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -43,7 +41,7 @@ namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
                 .IsRequired();
 
             builder.Property(c => c.LastModifiedDate)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property<string>("CreatedBy")
                 .HasMaxLength(100)
@@ -53,12 +51,15 @@ namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
                 .HasMaxLength(100)
                 .HasDefaultValue("");
 
+            var createdDate = new DateTime(2025, 4, 3,0,0,0, DateTimeKind.Local);
+
+
             builder.HasData(
-              new Category("Elektronik", "Elektronik ürünler", null, 1) { Id = 1 },
-              new Category("Bilgisayar", "Bilgisayar ve aksesuarlar", 1, 2) { Id = 2 },
-              new Category("Laptop", "Dizüstü bilgisayarlar", 2, 3) { Id = 3 },
-              new Category("Masaüstü", "Masaüstü bilgisayarlar", 2, 3) { Id = 4 },
-              new Category("Telefon", "Cep telefonları", 1, 2) { Id = 5 }
+              new Category("Elektronik", "Elektronik ürünler", null, 1) { Id = 1, CreatedDate = createdDate },
+              new Category("Bilgisayar", "Bilgisayar ve aksesuarlar", 1, 2) { Id = 2, CreatedDate = createdDate },
+              new Category("Laptop", "Dizüstü bilgisayarlar", 2, 3) { Id = 3 , CreatedDate = createdDate },
+              new Category("Masaüstü", "Masaüstü bilgisayarlar", 2, 3) { Id = 4 , CreatedDate = createdDate },
+              new Category("Telefon", "Cep telefonları", 1, 2) { Id = 5 , CreatedDate = createdDate }
           );
         }
     }

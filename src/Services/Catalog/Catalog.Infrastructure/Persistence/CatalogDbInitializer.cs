@@ -1,15 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.Persistence
 {
-    public static  class CatalogDbInitializer 
+    public static class CatalogDbInitializer
     {
         //MigrateAsync
         public static async Task MigrateAsync(IServiceProvider services, ILogger logger)
@@ -23,7 +18,7 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
                     await dbContext.Database.MigrateAsync();
                     logger.LogInformation("Database Migration işlemi tamamlandı");
                 }
-              
+
 
             }
             catch (Exception)
@@ -33,6 +28,6 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
                 throw;
             }
         }
-       
+
     }
 }

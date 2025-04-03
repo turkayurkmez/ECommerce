@@ -1,11 +1,6 @@
 ﻿using ECommerce.Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
 {
@@ -31,7 +26,7 @@ namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
                 .IsRequired();
 
             builder.Property(b => b.LastModifiedDate)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property<string>("CreatedBy")
                 .HasMaxLength(100)
@@ -41,13 +36,15 @@ namespace ECommerce.Catalog.Infrastructure.EntityConfigurations
                 .HasMaxLength(100)
                 .HasDefaultValue("");
 
+            var createdDate = new DateTime(2025, 4, 3,0,0,0,DateTimeKind.Local);
+
             // Seed Data - Example brands
             builder.HasData(
-                new Brand("Apple", "Apple Inc.", "/images/brands/apple.png") { Id = 1 },
-                new Brand("Samsung", "Samsung Electronics Co., Ltd.", "/images/brands/samsung.png") { Id = 2 },
-                new Brand("HP", "Hewlett-Packard Company", "/images/brands/hp.png") { Id = 3 },
-                new Brand("Lenovo", "Lenovo Group Limited", "/images/brands/lenovo.png") { Id = 4 },
-                new Brand("Dell", "Dell Technologies Inc.", "/images/brands/dell.png") { Id = 5 }
+                new Brand("Apple", "Apple Inc.", "/images/brands/apple.png") { Id = 1, CreatedDate = createdDate },
+                new Brand("Samsung", "Samsung Electronics Co., Ltd.", "/images/brands/samsung.png") { Id = 2 , CreatedDate = createdDate },
+                new Brand("HP", "Hewlett-Packard Company", "/images/brands/hp.png") { Id = 3 , CreatedDate = createdDate },
+                new Brand("Lenovo", "Lenovo Group Limited", "/images/brands/lenovo.png") { Id = 4 , CreatedDate = createdDate },
+                new Brand("Dell", "Dell Technologies Inc.", "/images/brands/dell.png") { Id = 5 , CreatedDate = createdDate }
             );
 
         }

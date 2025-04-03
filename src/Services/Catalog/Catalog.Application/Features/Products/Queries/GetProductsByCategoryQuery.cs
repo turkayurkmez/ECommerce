@@ -4,15 +4,10 @@ using ECommerce.Common.Models;
 using ECommerce.Common.Results;
 using MapsterMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Features.Products.Queries
 {
-   
+
     public record GetProductsByCategoryQuery(int CategoryId, PaginationParameters PaginationParameters) : IRequest<Result<List<ProductSummaryDto>>>;
     public class GetProductsByCategoryQueryHandler : IRequestHandler<GetProductsByCategoryQuery, Result<List<ProductSummaryDto>>>
     {
@@ -27,7 +22,7 @@ namespace ECommerce.Catalog.Application.Features.Products.Queries
 
             var skip = (request.PaginationParameters.PageNumber - 1) * request.PaginationParameters.PageSize;
             var take = request.PaginationParameters.PageSize;
-            var products = await _productRepository.GetProductsByCategoryAsync(request.CategoryId, skip,take,cancellationToken);
+            var products = await _productRepository.GetProductsByCategoryAsync(request.CategoryId, skip, take, cancellationToken);
 
             //eğer products null ise veya products içerisinde eleman yok ise boş bir liste döndürülecek
             if (products == null || !products.Any())

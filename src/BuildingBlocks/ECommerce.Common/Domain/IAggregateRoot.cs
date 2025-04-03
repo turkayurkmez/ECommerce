@@ -1,11 +1,9 @@
-﻿using MediatR;
-
-namespace ECommerce.Common.Domain
+﻿namespace ECommerce.Common.Domain
 {
     public interface IAggregateRoot
     {
         //Domain Events process:
-      
+
 
 
 

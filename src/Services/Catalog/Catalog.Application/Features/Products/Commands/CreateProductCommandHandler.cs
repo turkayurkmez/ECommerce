@@ -4,11 +4,6 @@ using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Results;
 using MapsterMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Features.Products.Commands
 {
@@ -35,7 +30,7 @@ namespace ECommerce.Catalog.Application.Features.Products.Commands
 
         public async Task<Result<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-          var dto = request.ProductDto;
+            var dto = request.ProductDto;
             var categoryExists = await _categoryRepository.ExistsByIdAsync(dto.CategoryId, cancellationToken);
             if (!categoryExists)
             {

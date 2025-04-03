@@ -3,16 +3,11 @@ using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Results;
 using MapsterMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Features.Products.Queries
 {
     public record GetProductByIdQuery(int Id) : IRequest<Result<ProductDto>>;
-    public class GetProductByIdQueryHandler 
+    public class GetProductByIdQueryHandler
     {
         //IProductRepository, IMapper enjekte edilecek
         private readonly IProductRepository _productRepository;

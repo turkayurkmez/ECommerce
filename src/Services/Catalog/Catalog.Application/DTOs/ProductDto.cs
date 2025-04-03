@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ECommerce.Catalog.Application.DTOs
+﻿namespace ECommerce.Catalog.Application.DTOs
 {
 
     //Görüntüleme için kullanılacak olan record DTO:

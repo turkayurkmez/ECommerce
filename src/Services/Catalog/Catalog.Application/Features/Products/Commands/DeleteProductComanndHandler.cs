@@ -1,11 +1,6 @@
 ﻿using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Features.Products.Commands
 {

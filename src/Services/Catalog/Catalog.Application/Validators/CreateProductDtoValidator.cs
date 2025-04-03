@@ -1,16 +1,12 @@
 ﻿using ECommerce.Catalog.Application.DTOs;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Application.Validators
 {
     public class CreateProductDtoValidator : AbstractValidator<CreateProductDto>
     {
-        public CreateProductDtoValidator() {
+        public CreateProductDtoValidator()
+        {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Ürün adı boş olamaz")
                                 .MaximumLength(100)
                                 .WithMessage("Ürün adı en fazla 100 karakter olabilir");
@@ -28,9 +24,11 @@ namespace ECommerce.Catalog.Application.Validators
 
     //UpdateProductDtoValidator
 
-    public class UpdateProductDtoValidator : AbstractValidator<UpdateProductDto> {
+    public class UpdateProductDtoValidator : AbstractValidator<UpdateProductDto>
+    {
 
-        public UpdateProductDtoValidator() {
+        public UpdateProductDtoValidator()
+        {
 
             RuleFor(x => x.Name).NotEmpty().WithMessage("Ürün adı boş olamaz")
                                 .MaximumLength(100)

@@ -16,13 +16,13 @@ namespace ECommerce.Catalog.Domain.Entities
         public ProductStatus Status { get; private set; }
 
         //CategoryID
-        public int CategoryId { get; private set; }
+        public int? CategoryId { get; private set; }
         //BrandID
-        public int BrandId { get; private set; }
+        public int? BrandId { get; private set; }
 
         //Navigation properties
-        public Category Category { get; private set; }
-        public Brand Brand { get; private set; }
+        public Category? Category { get; private set; }
+        public Brand? Brand { get; private set; }
 
         private readonly List<ProductImage> _productImages = new List<ProductImage>();
         public IReadOnlyCollection<ProductImage> ProductImages => _productImages.AsReadOnly();

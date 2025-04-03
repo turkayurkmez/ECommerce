@@ -25,9 +25,9 @@ namespace ECommerce.Catalog.Domain.Entities
             {
                 throw new ArgumentNullException(nameof(name), "Marka adı boş olamaz:");
             }
-          
-          
-          
+
+
+
             Name = name;
             Description = description;
             IsActive = true;
@@ -77,5 +77,5 @@ namespace ECommerce.Catalog.Domain.Entities
 
 
 
-        }
+    }
 }

@@ -2,11 +2,6 @@
 using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Catalog.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Catalog.Infrastructure.Repositories
 {
@@ -28,13 +23,13 @@ namespace ECommerce.Catalog.Infrastructure.Repositories
 
         public async Task<List<Category>> GetRootCategoriesAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Categories                
+            return await _dbContext.Categories
                 .Where(c => c.ParentCategoryId == null)
                 .ToListAsync(cancellationToken);
 
         }
 
-       
+
     }
-    
+
 }

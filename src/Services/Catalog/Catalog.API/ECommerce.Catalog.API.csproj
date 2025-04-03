@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Catalog.Infrastructure\ECommerce.Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Endpoints\" />
-  </ItemGroup>
-
 </Project>

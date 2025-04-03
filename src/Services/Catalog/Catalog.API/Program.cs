@@ -1,4 +1,5 @@
-﻿using ECommerce.Catalog.Application.Extensions;
+﻿using ECommerce.Catalog.API.Endpoints;
+using ECommerce.Catalog.Application.Extensions;
 using ECommerce.Catalog.Infrastructure.Extensions;
 using ECommerce.Catalog.Infrastructure.Persistence;
 using ECommerce.Common.Extensions;
@@ -20,16 +21,7 @@ var app = builder.Build();
 //eğer geliştirme ortamındaysa:
 if (app.Environment.IsDevelopment())
 {
-    using (var scope = app.Services.CreateScope())
-    {
-       var initializer = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-        if (!initializer.Database.EnsureCreated())
-        {
-            await CatalogDbInitializer.MigrateAsync(app.Services, app.Logger);
-        }
-      
-       // await initializer.SeedAsync();
-    }
+   await CatalogDbInitializer.MigrateAsync(app.Services, app.Logger);
 
 }
 app.UseExceptionHandling();
@@ -41,7 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.MapProductsEndPoints();
 
 
 app.Run();

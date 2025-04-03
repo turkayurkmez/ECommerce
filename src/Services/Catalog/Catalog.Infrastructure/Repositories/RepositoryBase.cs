@@ -37,12 +37,12 @@ namespace ECommerce.Catalog.Infrastructure.Repositories
             return await _dbContext.Set<T>().AnyAsync(e => e.Id.Equals(id), cancellationToken);
         }
 
-        public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public Task<List<T>> GetAllAsync(int skip, int take, CancellationToken cancellationToken = default)
+        public virtual Task<List<T>> GetAllAsync(int skip, int take, CancellationToken cancellationToken = default)
         {
             return _dbContext.Set<T>().Skip(skip).Take(take).ToListAsync(cancellationToken);
         }

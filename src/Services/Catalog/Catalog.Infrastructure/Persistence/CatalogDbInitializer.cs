@@ -9,23 +9,23 @@ namespace ECommerce.Catalog.Infrastructure.Persistence
         //MigrateAsync
         public static async Task MigrateAsync(IServiceProvider services, ILogger logger)
         {
-            try
+            using (var scope = services.CreateScope())
             {
-                var dbContext = services.GetRequiredService<CatalogDbContext>();
-                //if is sql server
-                if (dbContext.Database.IsSqlServer())
+                var scopedServices = scope.ServiceProvider;
+                var dbContext = scopedServices.GetRequiredService<CatalogDbContext>();
+                try
                 {
-                    await dbContext.Database.MigrateAsync();
-                    logger.LogInformation("Database Migration işlemi tamamlandı");
+                    if (dbContext.Database.IsSqlServer())
+                    {
+                        await dbContext.Database.MigrateAsync();
+                        logger.LogInformation("Database Migration işlemi tamamlandı");
+                    }
                 }
-
-
-            }
-            catch (Exception)
-            {
-
-                logger.LogError("Database Migration işlemi sırasında hata oluştu");
-                throw;
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Database Migration işlemi sırasında hata oluştu");
+                    throw;
+                }
             }
         }
 

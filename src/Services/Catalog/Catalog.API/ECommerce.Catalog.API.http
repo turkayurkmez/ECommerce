@@ -1,0 +1,5 @@
+﻿@ECommerce.Catalog.API_HostAddress = https://localhost:7210
+
+GET {{ECommerce.Catalog.API_HostAddress}}/products
+
+###

@@ -55,6 +55,26 @@ namespace ECommerce.Catalog.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
+        public override async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Products
+                .Include(p => p.Category)  // Include Category
+                .Include(p => p.Brand)     // Include Brand
+                .Include(p => p.ProductImages)
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<Product>> GetAllAsync(int skip, int take, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Products
+                .Include(p => p.Category)  // Include Category
+                .Include(p => p.Brand)     // Include Brand
+                .Include(p => p.ProductImages)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync(cancellationToken);
+        }
+
         public async Task<List<Product>> GetProductsByCategoryIdAsync(int categoryId)
         {
             return await _dbContext.Products

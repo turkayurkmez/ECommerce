@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.DTOs
+﻿namespace ECommerce.Catalog.Application.DTOs
 {
     //Ürün özellikleri için kullanılacak olan DTO (Key, Value)
 

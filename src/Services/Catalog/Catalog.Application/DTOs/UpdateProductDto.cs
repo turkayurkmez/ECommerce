@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.DTOs
+﻿namespace ECommerce.Catalog.Application.DTOs
 {
     // Ürün güncelleme komutu için DTO
     public record UpdateProductDto

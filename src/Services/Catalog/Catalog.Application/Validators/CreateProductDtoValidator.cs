@@ -1,4 +1,4 @@
-﻿using Catalog.Application.DTOs;
+﻿using ECommerce.Catalog.Application.DTOs;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

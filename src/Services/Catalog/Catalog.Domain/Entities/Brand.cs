@@ -1,6 +1,6 @@
 ﻿using ECommerce.Common.Domain;
 
-namespace Catalog.Domain.Entities
+namespace ECommerce.Catalog.Domain.Entities
 {
     public class Brand : AuditableEntity<int>, IAggregateRoot
     {

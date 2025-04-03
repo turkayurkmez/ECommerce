@@ -1,4 +1,4 @@
-namespace Catalog.Application.DTOs
+namespace ECommerce.Catalog.Application.DTOs
 {
     public record ProductDetailDto : ProductDto
     {

@@ -1,5 +1,5 @@
-﻿using Catalog.Application.DTOs;
-using Catalog.Domain.Repositories;
+﻿using ECommerce.Catalog.Application.DTOs;
+using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Models;
 using ECommerce.Common.Results;
 using MapsterMapper;

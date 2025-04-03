@@ -1,14 +1,8 @@
-﻿using Catalog.Domain.Events;
-using Catalog.Domain.ValueObjects;
+﻿using ECommerce.Catalog.Domain.Events;
+using ECommerce.Catalog.Domain.ValueObjects;
 using ECommerce.Common.Domain;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Catalog.Domain.Entities
+namespace ECommerce.Catalog.Domain.Entities
 {
     public class Product : AuditableEntity<int>, IAggregateRoot
     {
@@ -36,7 +30,7 @@ namespace Catalog.Domain.Entities
         private readonly List<ProductAttribute> _productAttributes = new List<ProductAttribute>();
         public IReadOnlyCollection<ProductAttribute> ProductAttributes => _productAttributes.AsReadOnly();
 
-       
+
 
         protected Product()
         {
@@ -84,7 +78,7 @@ namespace Catalog.Domain.Entities
             Price = price;
             StockQuantity = stockQuantity;
             SKU = sku;
-            Status = StockQuantity > 0 ? ProductStatus.Active : ProductStatus.OutOfStock ;
+            Status = StockQuantity > 0 ? ProductStatus.Active : ProductStatus.OutOfStock;
             CategoryId = categoryId;
             BrandId = brandId;
 
@@ -105,15 +99,15 @@ namespace Catalog.Domain.Entities
             if (string.IsNullOrWhiteSpace(description))
             {
                 throw new ArgumentNullException(nameof(description), "Ürün açıklaması boş olamaz:");
-            }      
-       
+            }
+
             //check sku:
             if (string.IsNullOrWhiteSpace(sku))
             {
                 throw new ArgumentNullException(nameof(sku), "Ürün SKU değeri boş olamaz:");
             }
             Name = name;
-            Description = description;         
+            Description = description;
             SKU = sku;
             AddDomainEvent(new ProductUpdatedDomainEvent(Id, Name));
             SetModifiedDate();
@@ -198,7 +192,7 @@ namespace Catalog.Domain.Entities
 
         //Add Product Image
 
-        public void AddProductImage(string imageUrl, bool isMain=false, int sortOrder=0)
+        public void AddProductImage(string imageUrl, bool isMain = false, int sortOrder = 0)
         {
             if (string.IsNullOrWhiteSpace(imageUrl))
             {
@@ -253,7 +247,8 @@ namespace Catalog.Domain.Entities
         }
 
         //Remove Product Attribute
-        public void RemoveAttribute(string key) {
+        public void RemoveAttribute(string key)
+        {
             var existingAttribute = _productAttributes.FirstOrDefault(x => x.Key == key);
             if (existingAttribute == null)
             {

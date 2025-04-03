@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Domain.Entities
+namespace ECommerce.Catalog.Domain.Entities
 {
     public class ProductImage : Entity<int>
     {

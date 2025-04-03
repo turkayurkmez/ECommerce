@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.DTOs
+﻿namespace ECommerce.Catalog.Application.DTOs
 {
     //Ürün resmi için kullanılacak olan DTO (ImageUrl, Id, IsMain, SortOrder):
 

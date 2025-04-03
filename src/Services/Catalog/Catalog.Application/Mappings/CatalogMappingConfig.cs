@@ -1,5 +1,5 @@
-﻿using Catalog.Application.DTOs;
-using Catalog.Domain.Entities;
+﻿using ECommerce.Catalog.Application.DTOs;
+using ECommerce.Catalog.Domain.Entities;
 using Mapster;
 using System;
 using System.Collections.Generic;

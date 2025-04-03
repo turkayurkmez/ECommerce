@@ -1,5 +1,5 @@
-﻿using Catalog.Application.DTOs;
-using Catalog.Domain.Repositories;
+﻿using ECommerce.Catalog.Application.DTOs;
+using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Models;
 using ECommerce.Common.Results;
 using MapsterMapper;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Application.Features.Products.Queries
+namespace ECommerce.Catalog.Application.Features.Products.Queries
 {
     public record GetAllProductsQuery(PaginationParameters Pagination) : IRequest<Result<List<ProductSummaryDto>>>;
     public class GetAllProductsQuerHandler : IRequestHandler<GetAllProductsQuery, Result<List<ProductSummaryDto>>>

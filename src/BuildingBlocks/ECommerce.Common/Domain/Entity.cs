@@ -4,10 +4,10 @@ namespace ECommerce.Common.Domain
 {
     public abstract class Entity<TId> where TId : IEquatable<TId>
     {
-        public TId Id { get; protected set; }
+        public TId Id { get; set; }
 
         public DateTime CreatedDate { get; protected set; }
-        public DateTime LastModifiedDate { get; protected set; }
+        public DateTime? LastModifiedDate { get; protected set; }
 
         //Domain Events koleksiyonu:
         private List<INotification> _domainEvents { get; } = new();

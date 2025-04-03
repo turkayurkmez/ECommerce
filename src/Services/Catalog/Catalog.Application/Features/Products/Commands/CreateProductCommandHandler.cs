@@ -1,6 +1,6 @@
-﻿using Catalog.Application.DTOs;
-using Catalog.Domain.Entities;
-using Catalog.Domain.Repositories;
+﻿using ECommerce.Catalog.Application.DTOs;
+using ECommerce.Catalog.Domain.Entities;
+using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Common.Results;
 using MapsterMapper;
 using MediatR;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Application.Features.Products.Commands
+namespace ECommerce.Catalog.Application.Features.Products.Commands
 {
 
     public record CreateProductCommand(CreateProductDto ProductDto) : IRequest<Result<int>>;

@@ -1,4 +1,4 @@
-﻿namespace Catalog.Infrastructure
+﻿namespace ECommerce.Catalog.Infrastructure
 {
     public class Class1
     {

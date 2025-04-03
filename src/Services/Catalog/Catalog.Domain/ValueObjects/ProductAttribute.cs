@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Domain.ValueObjects
+namespace ECommerce.Catalog.Domain.ValueObjects
 {
 
     public record ProductAttribute(string Key, string Value);

@@ -1,4 +1,5 @@
-﻿using ECommerce.Catalog.API.Endpoints;
+﻿using Catalog.API.Endpoints;
+using ECommerce.Catalog.API.Endpoints;
 using ECommerce.Catalog.Application.Extensions;
 using ECommerce.Catalog.Infrastructure.Extensions;
 using ECommerce.Catalog.Infrastructure.Persistence;
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapProductsEndPoints();
+app.MapCategoryEndpoints();    
 
 
 app.Run();

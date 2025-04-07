@@ -2,7 +2,7 @@
 {
     public record BasketCheckoutEvent : IntegrationEvent
     {
-        public Guid UserId { get; init; }
+        public string UserId { get; init; }
         public string UserName { get; init; } = string.Empty;
         public decimal TotalPrice { get; init; }
 

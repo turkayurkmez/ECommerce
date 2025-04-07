@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "ECommerce.Basket.API.Protos";
+
+import "google/protobuf/empty.proto";
+
+service BasketProtoService{
+  rpc GetBasket(GetBasketRequest) returns (ShoppingCartResponse);
+  rpc UpdateBasket(UpdateBasketRequest) returns (ShoppingCartResponse);
+  rpc DeleteBasket(DeleteBasketRequest) returns (google.protobuf.Empty);
+  rpc Checkout(CheckoutRequest) returns (CheckoutResponse);
+}
+message GetBasketRequest{
+  string user_id = 1;
+}
+
+message UpdateBasketRequest{
+ string user_id = 1;
+ string user_name=2;
+ repeated BasketItemRequest  items = 3;
+}
+
+message BasketItemRequest{
+  int32 product_id = 1;
+  string product_name = 2;
+  double price = 3;  
+  int32 quantity = 5;
+  string image_url = 6;
+}
+
+message ShoppingCartResponse{
+  string user_id = 1;
+  string user_name=2;
+  repeated BasketItemResponse items = 3;
+}
+
+message BasketItemResponse{
+  int32 product_id = 1;
+  string product_name = 2;
+  double price = 3;  
+  int32 quantity = 5;
+  string image_url = 6;
+}
+
+message DeleteBasketRequest{
+  string user_id = 1;
+}
+
+message CheckoutRequest{
+  string user_id = 1;
+  string user_name=2;
+  string first_name=3;
+  string last_name=4;
+  string email_address=5;
+  string billing_address=6;
+  string shipping_address=7;
+  string payment_method=8;
+}
+
+message CheckoutResponse{
+	bool success = 1;
+	string message = 2;
+}

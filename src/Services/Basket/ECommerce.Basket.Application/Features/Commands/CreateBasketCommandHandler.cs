@@ -15,7 +15,7 @@ namespace ECommerce.Basket.Application.Features.Commands
     internal class CreateBasketCommandHandler : IRequestHandler<CreateBasketCommand, Result<ShoppingCart>>
     {
      
-        private readonly IBasketRepository _basketRepository;
+        private readonly IBasketRepository _basketRepository; 
         public CreateBasketCommandHandler(IBasketRepository basketRepository)
         {
             _basketRepository = basketRepository;
@@ -36,6 +36,7 @@ namespace ECommerce.Basket.Application.Features.Commands
             }
 
            //Sepeti veritabanına kaydetme işlemi:
+
           
             return Result<ShoppingCart>.Success(updatedShoppingCart);
 

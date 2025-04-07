@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\ECommerce.MessageBroker\ECommerce.MessageBroker.csproj" />
     <ProjectReference Include="..\Catalog.Domain\ECommerce.Catalog.Domain.csproj" />
   </ItemGroup>
 

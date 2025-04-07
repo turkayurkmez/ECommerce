@@ -63,6 +63,15 @@ namespace ECommerce.Basket.Domain.Entities
             }
         }
 
+        public void UpdateItemPrice(int productId, decimal price)
+        {
+            var existingItem = _items.Find(i => i.ProductId == productId);
+            if (existingItem != null)
+            {
+                existingItem.ChangePrice(price);
+            }
+        }
+
         public void Clear() => _items.Clear();
 
         //Get total price

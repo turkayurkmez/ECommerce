@@ -42,6 +42,11 @@ namespace ECommerce.Basket.Domain.Entities
             return Price * Quantity;
         }
 
-
+        public void ChangePrice(decimal price)
+        {
+            price = price > 0 ? price : throw new ArgumentException("Price must be greater than zero.");
+            Price = price;
+            SetModifiedDate();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ECommerce.Catalog.Domain.Repositories;
 using ECommerce.Catalog.Infrastructure.Persistence;
 using ECommerce.Catalog.Infrastructure.Repositories;
+using ECommerce.MessageBroker.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,12 @@ namespace ECommerce.Catalog.Infrastructure.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+
+            services.AddMessageBroker(configuration);
+
+            services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(InfrastructureServiceExtensions).Assembly);
+            });
 
             return services;
         }

@@ -1,8 +1,11 @@
 ﻿using ECommerce.Basket.API.Protos;
+using ECommerce.Basket.Application.Features.Commands;
 using ECommerce.Basket.Application.Features.Queries;
 using ECommerce.Basket.Domain.Entities;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using MediatR;
+using System.Diagnostics;
 
 namespace ECommerce.Basket.API.Services
 {
@@ -28,6 +31,63 @@ namespace ECommerce.Basket.API.Services
 
 
 
+        }
+
+        public async override Task<ShoppingCartResponse> UpdateBasket(UpdateBasketRequest request, ServerCallContext context)
+        {
+            var command = new UpdateBasketCommand(request.UserId, request.UserName, request.Items.Select(i=>new BasketItemDto(i.ProductId,i.ProductName,i.ImageUrl,i.Price,i.Quantity)).ToList());
+
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, "Sepet güncellenemedi"));
+            }
+
+
+            return MapToShoppingCartResponse(result.Data);
+
+        }
+
+        public async override Task<CheckoutResponse> Checkout(CheckoutRequest request, ServerCallContext context)
+        {
+
+            var command = new CheckoutBasketCommand()
+            {
+                UserId = request.UserId,
+                UserName = request.UserName,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                EmailAddress = request.EmailAddress,
+                BillingAddress = request.BillingAddress,
+                ShippingAddress = request.ShippingAddress,
+                PaymentMethod = request.PaymentMethod
+            };
+            var result = await _mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, "Sepet güncellenemedi"));
+            }
+            return new CheckoutResponse
+            {
+               Success = true,
+                Message = result.Message
+            };
+
+
+        }
+
+        //Delete Basket async:
+
+        public async override Task<Empty> DeleteBasket(DeleteBasketRequest request, ServerCallContext context)
+        {
+            var command = new DeleteBasketCommand(request.UserId);
+            var result = await _mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, "Sepet silinemedi"));
+            }
+            return new Empty();
         }
 
         private ShoppingCartResponse MapToShoppingCartResponse(ShoppingCart? data)

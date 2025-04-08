@@ -14,13 +14,13 @@ namespace ECommerce.Basket.Domain.Entities
         public ShoppingCart() { }
         public ShoppingCart(string userId, string userName)
         {
-            Id = userId;
+            UserId = userId;
             UserName = userName;
 
         }
 
         //Add item to cart
-        public void AddItem(int productId, string productName, string productImageUrl, decimal price, int quantity)
+        public void AddItem(int productId, string productName, string productImageUrl, double price, int quantity)
         {
             var existingItem = _items.Find(i => i.ProductId == productId);
             if (existingItem != null)
@@ -29,7 +29,7 @@ namespace ECommerce.Basket.Domain.Entities
             }
             else
             {
-                var newItem = new ShoppingCartItem(productId, productName, productImageUrl, price, quantity);
+                var newItem = new ShoppingCartItem(productId, productName, productImageUrl, (decimal)price, quantity);
                 _items.Add(newItem);
             }
         }

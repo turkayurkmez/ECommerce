@@ -1,0 +1,20 @@
+﻿@ECommerce.Basket.API_HostAddress = https://localhost:7185
+
+POST {{ECommerce.Basket.API_HostAddress}}/
+Content-Type: application/json
+
+{
+ "userId": "user123",
+  "userName": "Test User",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "Iphone 12",
+      "unitPrice": 10000,
+      "quantity": 1,
+      "pictureUrl": "/images/products/iphone12.png"
+    }
+  ]
+}
+
+###

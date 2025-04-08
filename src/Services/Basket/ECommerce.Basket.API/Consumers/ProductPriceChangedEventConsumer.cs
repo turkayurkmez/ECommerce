@@ -57,28 +57,7 @@ namespace ECommerce.Basket.API.Consumers
 
         private async Task<string[]> GetAllUserIdAsync()
         {
-            try
-            {
-                var redis = _basketRepository is RedisBasketRepository redisRepo
-                                                     ? (redisRepo as dynamic)._redis
-                                                     : null;
-
-                if (redis == null)
-                {
-                    _logger.LogWarning("Redis bağlantısı bulunamadı.");
-                    return Array.Empty<string>();
-                }
-
-                var server = redis.GetServer(redis.GetEndPoints().First());
-                var keys = server.Keys(pattern: "*").ToArray();
-                return keys.Select((Func<RedisKey, string>)(k => k.ToString())).ToArray();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Redis'ten kullanıcı ID'leri alınırken hata oluştu.");
-                return Array.Empty<string>();
-
-            }
+            return await _basketRepository.GetAllUserIdsAsync();
         }
     }
 

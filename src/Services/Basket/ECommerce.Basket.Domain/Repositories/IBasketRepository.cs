@@ -16,6 +16,8 @@ namespace ECommerce.Basket.Domain.Repositories
         //delete basket
         Task DeleteBasketAsync(string userId, CancellationToken cancellationToken = default);
 
+        Task<string[]> GetAllUserIdsAsync(CancellationToken cancellationToken = default);
+
 
 
     }

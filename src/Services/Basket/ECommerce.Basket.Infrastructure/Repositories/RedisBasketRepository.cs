@@ -1,8 +1,10 @@
 ﻿using ECommerce.Basket.Domain.Entities;
 using ECommerce.Basket.Domain.Repositories;
+using ECommerce.Basket.Infrastructure.Resolvers;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using StackExchange.Redis;
-using System.Text.Json;
+
 
 namespace ECommerce.Basket.Infrastructure.Repositories
 {
@@ -31,7 +33,24 @@ namespace ECommerce.Basket.Infrastructure.Repositories
                 _logger.LogWarning($"{userId} kullanıcısına ait sepet bilgisi bulunamadı");
                 return null;
             }
-            var shoppingCart = JsonSerializer.Deserialize<ShoppingCart>(basket!);
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new PrivateSetterContractResolver(),
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor 
+            };
+
+            var basketDto = JsonConvert.DeserializeObject<ShoppingCartDto>(basket!);
+
+            // DTO'dan domain modele dönüştür
+            var shoppingCart = new ShoppingCart(basketDto.UserId, basketDto.UserName);
+
+            foreach (var itemDto in basketDto.Items)
+            {
+                shoppingCart.AddItem(itemDto.ProductId, itemDto.ProductName, itemDto.PictureUrl, (double)itemDto.UnitPrice, itemDto.Quantity);
+                
+            }
+
             return shoppingCart!;
 
         }
@@ -40,7 +59,20 @@ namespace ECommerce.Basket.Infrastructure.Repositories
             ArgumentNullException.ThrowIfNull(shoppingCart, nameof(shoppingCart));
             try
             {
-                var created = await _database.StringSetAsync(shoppingCart.UserId, JsonSerializer.Serialize(shoppingCart), TimeSpan.FromDays(30));
+                var basketDto = new ShoppingCartDto
+                {
+                    UserId = shoppingCart.UserId,
+                    UserName = shoppingCart.UserName,
+                    Items = shoppingCart.Items.Select(i => new ShoppingCartItemDto
+                    {
+                        ProductId = i.ProductId,
+                        ProductName = i.ProductName,
+                        UnitPrice = i.Price,
+                        Quantity = i.Quantity,
+                        PictureUrl = i.ProductImageUrl
+                    }).ToList()
+                };
+                var created = await _database.StringSetAsync(shoppingCart.UserId, JsonConvert.SerializeObject(basketDto), TimeSpan.FromDays(30));
 
                 if (!created)
                 {
@@ -80,6 +112,41 @@ namespace ECommerce.Basket.Infrastructure.Repositories
 
 
         }
+
+        public async Task<string[]> GetAllUserIdsAsync(CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var server = _redis.GetServer(_redis.GetEndPoints().First());
+                var keys = server.Keys(pattern: "*").ToArray();
+                var userIds = keys.Select(k => k.ToString()).ToArray();
+                return userIds;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Kullanıcı ID'leri alınırken hata oluştu");
+
+                return Array.Empty<string>();
+            }
+
+        }
     }
+
+    public class ShoppingCartDto
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public List<ShoppingCartItemDto> Items { get; set; } = new();
+    }
+
+    public class ShoppingCartItemDto
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public string PictureUrl { get; set; }
+    }
+
 
 }

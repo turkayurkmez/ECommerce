@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Basket.Application.Features.Commands
 {
-    public record BasketItemDto(int ProductId, string ProductName, string ProductImageUrl, decimal Price, int Quantity);
+    public record BasketItemDto(int ProductId, string ProductName, string ProductImageUrl, double Price, int Quantity);
     public record CreateBasketCommand(string UserId, string UserName, List<BasketItemDto> Items) : IRequest<Result<ShoppingCart>>;
     internal class CreateBasketCommandHandler : IRequestHandler<CreateBasketCommand, Result<ShoppingCart>>
     {

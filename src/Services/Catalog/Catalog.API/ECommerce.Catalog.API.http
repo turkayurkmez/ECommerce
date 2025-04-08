@@ -3,3 +3,29 @@
 GET {{ECommerce.Catalog.API_HostAddress}}/products
 
 ###
+
+POST {{ECommerce.Catalog.API_HostAddress}}/products
+Content-Type: application/json
+
+{
+  //CreateProductDto
+}
+
+###
+
+@id=1
+PUT {{ECommerce.Catalog.API_HostAddress}}/products/{{id}}
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Iphone 12",
+  "description": "Apple Iphone 12",
+  "price": 9000,
+  "stockQuantity": 100,
+  "sku": "IP12",
+  "categoryId": 5,
+  "brandId": 1
+}
+
+###

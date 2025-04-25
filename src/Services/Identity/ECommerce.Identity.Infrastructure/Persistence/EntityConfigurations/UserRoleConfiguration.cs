@@ -19,6 +19,5 @@ namespace ECommerce.Identity.Infrastructure.Persistence.EntityConfigurations
 
         }
     }
-    {
-    }
+    
 }

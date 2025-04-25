@@ -12,6 +12,9 @@ namespace ECommerce.Identity.Domain.Entities
         //UserID
         public Guid UserId { get; private set; }
 
+        //Navigation Properties
+        public User User { get; private set; }
+
         protected RefreshToken()
         {
         }

@@ -1,12 +1,7 @@
 ﻿using ECommerce.Common.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.Identity.Application.Features
+namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
 {
     public record UserDto
     {
@@ -20,13 +15,13 @@ namespace ECommerce.Identity.Application.Features
         public DateTime? LastLoginDate { get; init; }
         public List<string> Roles { get; set; } = new List<string>();
     }
-    public class RegisterUserCommand : IRequest<Result<UserDto>>
+    public record RegisterUserCommandRequest : IRequest<Result<UserDto>>
     {
         public string Username { get; init; } = string.Empty;
         public string Password { get; init; } = string.Empty;
         public string Email { get; init; } = string.Empty;
         public string FirstName { get; init; } = string.Empty;
         public string LastName { get; init; } = string.Empty;
-   
+
     }
 }

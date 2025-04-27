@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Identity.Application.Features
+namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<UserDto>>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommandRequest, Result<UserDto>>
     {
         private readonly IUserRepository userRepository;
         private readonly IRoleRepository roleRepository;
@@ -24,7 +24,7 @@ namespace ECommerce.Identity.Application.Features
             this.roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
             this.passwordHashingService = passwordHashingService ?? throw new ArgumentNullException(nameof(passwordHashingService));
         }
-        public async Task<Result<UserDto>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<UserDto>> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
             // Kullanıcı adı eşsiz mi?
             if (await userRepository.IsUserNameInUniqueAsync(request.Username,cancellationToken))

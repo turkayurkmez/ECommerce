@@ -3,7 +3,7 @@ using ECommerce.Identity.Domain.Repositories;
 using ECommerce.Identity.Infrastructure.Services;
 using MediatR;
 
-namespace ECommerce.Identity.Application.Features.Users.Commands
+namespace ECommerce.Identity.Application.Features.Users.Commands.ChangePassword
 {
     public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommandRequest, Result>
     {

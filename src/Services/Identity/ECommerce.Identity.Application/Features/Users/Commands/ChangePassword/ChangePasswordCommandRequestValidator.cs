@@ -1,17 +1,12 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.Identity.Application.Features.Users.Commands
+namespace ECommerce.Identity.Application.Features.Users.Commands.ChangePassword
 {
     public class ChangePasswordCommandRequestValidator : AbstractValidator<ChangePasswordCommandRequest>
     {
         public ChangePasswordCommandRequestValidator()
         {
-            
+
             RuleFor(x => x.CurrentPassword)
                 .NotEmpty()
                 .WithMessage("Mevcut şifre boş olamaz");
@@ -28,5 +23,5 @@ namespace ECommerce.Identity.Application.Features.Users.Commands
                 .WithMessage("Yeni şifreler eşleşmiyor");
         }
     }
-    
+
 }

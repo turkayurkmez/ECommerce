@@ -1,12 +1,7 @@
 ﻿using ECommerce.Common.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.Identity.Application.Features.Users.Commands
+namespace ECommerce.Identity.Application.Features.Users.Commands.ChangePassword
 {
     public record ChangePasswordCommandRequest : IRequest<Result>
     {

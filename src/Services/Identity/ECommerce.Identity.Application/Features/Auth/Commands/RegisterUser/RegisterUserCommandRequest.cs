@@ -6,7 +6,7 @@ namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
     public record UserDto
     {
         public Guid Id { get; init; }
-        public string Username { get; init; } = string.Empty;
+        public string UserName { get; init; } = string.Empty;
         public string Email { get; init; } = string.Empty;
         public string FirstName { get; init; } = string.Empty;
         public string LastName { get; init; } = string.Empty;
@@ -17,7 +17,7 @@ namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
     }
     public record RegisterUserCommandRequest : IRequest<Result<UserDto>>
     {
-        public string Username { get; init; } = string.Empty;
+        public string UserName { get; init; } = string.Empty;
         public string Password { get; init; } = string.Empty;
         public string Email { get; init; } = string.Empty;
         public string FirstName { get; init; } = string.Empty;

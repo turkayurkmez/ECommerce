@@ -11,7 +11,7 @@ namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
     {
         public RegisterUserCommandRequestValidator()
         {
-            RuleFor(x => x.Username)
+            RuleFor(x => x.UserName)
                 .NotEmpty()
                 .WithMessage("Kullanıcı adı boş olamaz")
                 .MinimumLength(3)

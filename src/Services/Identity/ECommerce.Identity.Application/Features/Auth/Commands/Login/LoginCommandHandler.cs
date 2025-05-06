@@ -40,7 +40,7 @@ namespace ECommerce.Identity.Application.Features.Auth.Commands.Login
                 return Result<AuthResponseDto>.Failure("Kullanıcı aktif değil");
             }
             //şifreyi kontrol et
-            if (!passwordHashingService.VerifyPassword(request.Password, user.PasswordHash))
+            if (!passwordHashingService.VerifyPassword(user.PasswordHash,request.Password))
             {
                 return Result<AuthResponseDto>.Failure("Kullanıcı adı veya şifre hatalı");
             }

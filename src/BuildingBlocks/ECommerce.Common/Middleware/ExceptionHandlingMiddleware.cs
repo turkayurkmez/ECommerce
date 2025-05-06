@@ -22,18 +22,52 @@ namespace ECommerce.Common.Middleware
             {
                 await _next(context);
             }
+            catch (OperationCanceledException ex)
+            {
+                // Only log at debug level for cancellations as they are often expected
+                _logger.LogDebug($"Request was canceled: {ex.Message}");
+
+                // Check if the client has disconnected before trying to write a response
+                if (!context.RequestAborted.IsCancellationRequested)
+                {
+                    await HandleCancellationAsync(context);
+                }
+            }
             catch (Exception ex)
             {
-                _logger.LogError($"Bir hata meydana geldi: {ex.Message}");
-
+                _logger.LogError("Bir hata meydana geldi: {Message}", ex.Message);
                 await HandleExceptionAsync(context, ex);
+            }
+        }
 
+        private async Task HandleCancellationAsync(HttpContext context)
+        {
+            // Only process if response hasn't started yet
+            if (!context.Response.HasStarted)
+            {
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = StatusCodes.Status499ClientClosedRequest; // Non-standard status code for client closed request
 
+                var exceptionDetails = new ExceptionDetails
+                {
+                    StatusCode = StatusCodes.Status499ClientClosedRequest,
+                    Message = "Request was canceled"
+                };
+
+                var json = JsonSerializer.Serialize(exceptionDetails);
+                await context.Response.WriteAsync(json);
             }
         }
 
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            // Only process if response hasn't started yet
+            if (context.Response.HasStarted)
+            {
+                _logger.LogWarning("Response has already started, cannot write error response");
+                return;
+            }
+
             context.Response.ContentType = "application/json";
 
             var statusCode = ex switch
@@ -59,8 +93,6 @@ namespace ECommerce.Common.Middleware
 
             var json = JsonSerializer.Serialize(exceptionDetails);
             await context.Response.WriteAsync(json);
-
-
         }
     }
 }

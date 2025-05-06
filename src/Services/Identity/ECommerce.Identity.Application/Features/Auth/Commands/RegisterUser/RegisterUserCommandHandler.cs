@@ -27,21 +27,21 @@ namespace ECommerce.Identity.Application.Features.Auth.Commands.RegisterUser
         public async Task<Result<UserDto>> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
             // Kullanıcı adı eşsiz mi?
-            if (await userRepository.IsUserNameInUniqueAsync(request.Username,cancellationToken))
+            if (!await userRepository.IsUserNameInUniqueAsync(request.UserName,cancellationToken))
             {
-                return Result<UserDto>.Failure($"Kullanıcı adı {request.Username} zaten mevcut");
+                return Result<UserDto>.Failure($"Kullanıcı adı {request.UserName} zaten mevcut");
 
             }
 
             // E-posta adresi eşsiz mi?
-            if (await userRepository.IsEmailUniqueAsync(request.Email, cancellationToken))
+            if (!await userRepository.IsEmailUniqueAsync(request.Email, cancellationToken))
             {
                 return Result<UserDto>.Failure($"E-posta adresi {request.Email} zaten mevcut");
             }
 
             var passwordHash = passwordHashingService.HashPassword(request.Password);
 
-            var user = new User(request.Username, request.Email, request.FirstName, request.LastName, passwordHash);
+            var user = new User(request.UserName, request.Email, request.FirstName, request.LastName, passwordHash);
             var defaultRoles = await roleRepository.GetDefaultRolesAsync(cancellationToken);
             if (defaultRoles != null && defaultRoles.Count > 0)
             {

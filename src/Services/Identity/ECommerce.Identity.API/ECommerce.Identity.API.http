@@ -1,4 +1,4 @@
-@ECommerce.Identity.API_HostAddress = http://localhost:5206
+@ECommerce.Identity.API_HostAddress = http://localhost:5131
 
 GET {{ECommerce.Identity.API_HostAddress}}/weatherforecast/
 Accept: application/json

@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Identity.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Identity.Infrastructure", "src\Services\Identity\ECommerce.Identity.Infrastructure\ECommerce.Identity.Infrastructure.csproj", "{E0AC83A1-89C8-4FDC-BE76-0C5396F839F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Identity.API", "src\Services\Identity\ECommerce.Identity.API\ECommerce.Identity.API.csproj", "{5A05744E-9173-433D-AB89-D6DEE6A7D968}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Identity.API", "src\Services\Identity\ECommerce.Identity.API\ECommerce.Identity.API.csproj", "{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,10 +107,10 @@ Global
 		{E0AC83A1-89C8-4FDC-BE76-0C5396F839F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0AC83A1-89C8-4FDC-BE76-0C5396F839F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0AC83A1-89C8-4FDC-BE76-0C5396F839F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A05744E-9173-433D-AB89-D6DEE6A7D968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A05744E-9173-433D-AB89-D6DEE6A7D968}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A05744E-9173-433D-AB89-D6DEE6A7D968}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A05744E-9173-433D-AB89-D6DEE6A7D968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,7 +135,7 @@ Global
 		{90E61C0D-5C5A-4885-A17B-91B513BEA7E1} = {2FAAFEF8-E024-4F2E-839C-342C6C7EF76B}
 		{A88A0CE4-A76D-49D8-B3B4-DC78B01522B7} = {2FAAFEF8-E024-4F2E-839C-342C6C7EF76B}
 		{E0AC83A1-89C8-4FDC-BE76-0C5396F839F5} = {2FAAFEF8-E024-4F2E-839C-342C6C7EF76B}
-		{5A05744E-9173-433D-AB89-D6DEE6A7D968} = {2FAAFEF8-E024-4F2E-839C-342C6C7EF76B}
+		{7087FD7C-D4DA-27B2-3D7C-97026CF1FEBD} = {2FAAFEF8-E024-4F2E-839C-342C6C7EF76B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5A97F9D-312A-4D2E-A70F-401B42D61ACB}

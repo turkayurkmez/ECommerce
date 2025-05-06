@@ -1,12 +1,13 @@
-﻿using ECommerce.Identity.Infrastructure.Extensions;
+﻿using ECommerce.Common.Extensions;
+using ECommerce.EventBus.Extensions;
+using ECommerce.Identity.API.Endpoints;
 using ECommerce.Identity.Application.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ECommerce.Identity.Infrastructure.Extensions;
+using ECommerce.Identity.Infrastructure.Persistence;
 using ECommerce.Identity.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using ECommerce.Identity.Infrastructure.Persistence;
-using ECommerce.Common.Extensions;
-using ECommerce.Identity.API.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddIdentityInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+
 
 builder.Services.AddCors(options =>
 {
@@ -29,24 +31,24 @@ builder.Services.AddCors(options =>
 //JWT Authentication
 var jwtSettings = new JwtTokenSettings();
 builder.Configuration.GetSection("JwtSettings").Bind(jwtSettings);
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings.Issuer,
-        ValidAudience = jwtSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
-        ClockSkew = TimeSpan.Zero // Remove delay of token expiration
-    };
-});
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true,
+//        ValidIssuer = jwtSettings.Issuer,
+//        ValidAudience = jwtSettings.Audience,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
+//        ClockSkew = TimeSpan.Zero // Remove delay of token expiration
+//    };
+//});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -88,31 +90,19 @@ app.MapGroup("/api/v1/auth")
    .WithTags("Auth")
    .WithOpenApi();
 
+// User endpoints
+app.MapGroup("/api/v1/users")
+   .MapUserEndpoints()
+   .WithTags("Users")
+   .WithOpenApi();
+
+// Role endpoints
+app.MapGroup("/api/v1/roles")
+   .MapRoleEndpoints()
+   .WithTags("Roles")
+   .WithOpenApi();
 
 
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

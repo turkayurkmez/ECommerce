@@ -14,7 +14,7 @@ namespace ECommerce.Catalog.Infrastructure.Extensions
 
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            // add your infrastructure services here
+            
             services.AddDbContext<CatalogDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("CatalogConnection"), sqlServerOptionsAction: sqlOption =>
             {
                 sqlOption.MigrationsAssembly(typeof(CatalogDbContext).Assembly.FullName);

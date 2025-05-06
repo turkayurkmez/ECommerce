@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerce.MessageBroker.Extensions;
 
 namespace ECommerce.Identity.Infrastructure.Extensions
 {
@@ -20,10 +21,7 @@ namespace ECommerce.Identity.Infrastructure.Extensions
     {
         public static IServiceCollection AddIdentityInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            // Add your identity infrastructure services here
-            // For example, add DbContext, repositories, etc.
-            // services.AddDbContext<YourDbContext>(options => ...);
-            // services.AddScoped<IYourRepository, YourRepository>();
+            
 
             services.AddDbContext<IdentityDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("IdentityConnection"), sqlServerOptionsAction: sqlOption =>
@@ -31,6 +29,8 @@ namespace ECommerce.Identity.Infrastructure.Extensions
                     sqlOption.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName);
                     sqlOption.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
                 }));
+
+          
 
             //repositories
 
@@ -63,6 +63,8 @@ namespace ECommerce.Identity.Infrastructure.Extensions
                     ClockSkew = TimeSpan.Zero // Remove delay of token expiration
                 };
             });
+
+            services.AddMessageBroker(configuration);
 
             //mediatr:
             services.AddMediatR(cfg =>
